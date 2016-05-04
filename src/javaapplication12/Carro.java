@@ -5,10 +5,13 @@
  */
 package javaapplication12;
 
+import java.awt.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -16,7 +19,7 @@ import javax.swing.Timer;
  *
  * @author Estudiante
  */
-public class Carro  extends JPanel implements ActionListener{
+public class Carro  extends JPanel implements ActionListener, KeyListener{
     
     private Timer timer;
     private int x;
@@ -24,6 +27,8 @@ public class Carro  extends JPanel implements ActionListener{
     
     public Carro(){       
         this.timer = new Timer(5, this);
+        this.setFocusable(true);
+        addKeyListener(this);
         this.timer.start();
     }
     
@@ -39,8 +44,27 @@ public class Carro  extends JPanel implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e){
-        this.x += 1;
-        this.y += 1;
+        
+    }
+    
+    @Override
+    public void keyPressed(KeyEvent ke){
+        switch (ke.getKeyCode()){
+            case KeyEvent.VK_DOWN: y += 10; break;
+            case KeyEvent.VK_UP: y -= 10; break;
+            case KeyEvent.VK_LEFT: x -= 10; break;
+            case KeyEvent.VK_RIGHT: x += 10; break;
+        }
         repaint();
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent e){
+        
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+            
     }
 }
