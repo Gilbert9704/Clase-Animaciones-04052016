@@ -5,49 +5,25 @@
  */
 package javaapplication12;
 
-import java.awt.*;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import javax.swing.JPanel;
-import javax.swing.Timer;
 
-/**
- *
- * @author Estudiante
- */
-public class Carro  extends JPanel implements ActionListener, KeyListener{
-    
-    private Timer timer;
+
+public class Carro {
     private int x;
     private int y;
     
-    public Carro(){       
-        this.timer = new Timer(5, this);
-        this.setFocusable(true);
-        addKeyListener(this);
-        this.timer.start();
+    public void dibujar(Graphics g){
+        g.setColor(Color.BLACK);
+        g.fillOval(x, y+20, 25, 25);//x,y,ancho,alto
+        g.fillOval(x+70, y+20, 25, 25);
+        g.setColor(Color.BLUE);
+        g.drawRect(x, y+20, 100, -25);
+        g.drawRect(x-5, y-5, 110, 50);
     }
-    
-    @Override
-    protected void paintComponent(Graphics g){
-        super.paintComponent(g);
-        g.setColor(Color.red);
-        g.fillOval(x, y, 25, 25);//x,y,ancho,alto
-        g.fillOval(x, y, 25, 25);
-        g.drawRect(x, y, 100, -25);
-        
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent e){
-        
-    }
-    
-    @Override
+
     public void keyPressed(KeyEvent ke){
         switch (ke.getKeyCode()){
             case KeyEvent.VK_DOWN: y += 10; break;
@@ -55,16 +31,19 @@ public class Carro  extends JPanel implements ActionListener, KeyListener{
             case KeyEvent.VK_LEFT: x -= 10; break;
             case KeyEvent.VK_RIGHT: x += 10; break;
         }
-        repaint();
+        
     }
-    
-    @Override
+
     public void keyTyped(KeyEvent e){
         
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
             
     }
+    
+    public Rectangle obtenerRectangulo(){
+       return new Rectangle(x, y, 20, 20); 
+    }
+    
 }

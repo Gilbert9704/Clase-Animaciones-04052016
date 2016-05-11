@@ -20,9 +20,10 @@ public class JavaApplication12 {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setTitle("Carro");
-        frame.setSize(new Dimension(200, 200));
-        frame.add(new Carro());
+        frame.setSize(new Dimension(1000, 1000));
+        frame.add(new Tablero());
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
 }
